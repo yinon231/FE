@@ -1,6 +1,7 @@
 import "../style/style.css";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 const AddDonation = () => {
   return (
     <div>
@@ -17,6 +18,11 @@ const AddDonation = () => {
           label="Enter amount"
           variant="outlined"
         />
+        <div id="flex-button">
+          <Button style={{ width: "30%" }} variant="contained">
+            Submit
+          </Button>
+        </div>
       </Container>
     </div>
   );
