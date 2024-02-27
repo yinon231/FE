@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 const Layout = () => {
   const drawerWidth = 240;
-  const navItems = ["Home", "Add Donation", "Update Donation"];
+  const navItems = ["Home", "Add Donation"];
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
