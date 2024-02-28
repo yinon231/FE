@@ -1,4 +1,3 @@
-import "../style/style.css";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
@@ -18,7 +17,7 @@ const AddDonation = () => {
       },
       amount: amount,
       status: "pending",
-      date: new Date().toString(),
+      date: new Date().toLocaleDateString(),
     };
     addDonation(donationBody);
   };

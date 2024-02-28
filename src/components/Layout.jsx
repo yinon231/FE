@@ -15,6 +15,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import "../style/style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Layout = () => {
   const drawerWidth = 240;
@@ -45,7 +47,7 @@ const Layout = () => {
   );
 
   return (
-    <>
+    <div id="body">
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar component="nav">
@@ -105,7 +107,7 @@ const Layout = () => {
         </Box>
       </Box>
       <Outlet />
-    </>
+    </div>
   );
 };
 

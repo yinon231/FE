@@ -12,7 +12,7 @@ const AppRouter = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/addDonation" element={<AddDonation />} />
-          <Route path="/UpdateDonation" element={<UpdateDonation />} />
+          <Route path="/UpdateDonation/:id" element={<UpdateDonation />} />
           <Route path="/Donation" element={<Donation />} />
         </Route>
       </Routes>

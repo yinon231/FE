@@ -1,70 +1,44 @@
-import "../style/style.css";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { updateDonation } from "../services/service";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const UpdateDonation = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState("");
-  const [status, setStatus] = useState("");
-  const [searchParams] = useSearchParams();
-  const updateDon = (event) => {
+  const [donation, setDonation] = useState(useLocation().state);
+  const [email, setEmail] = useState(donation.donor.email);
+  const [name, setName] = useState(donation.donor.name);
+  const [amount, setAmount] = useState(donation.amount);
+  const [status, setStatus] = useState(donation.status);
+  const updateDon = async (event) => {
     event.preventDefault();
-    const donationBody = {};
-    if (name != "") {
-      if (email != "") {
-        donationBody.donor = {
-          name: name,
-          email: email,
-        };
-      } else {
-        donationBody.donor = {
-          name: name,
-        };
-      }
-    }
-    if (email != "") {
-      if (name != "") {
-        donationBody.donor = {
-          name: name,
-          email: email,
-        };
-      } else {
-        donationBody.donor = {
-          email: email,
-        };
-      }
-    }
-    if (amount != "") {
-      donationBody.amount = amount;
-    }
-    if (status != "") {
-      donationBody.status = status;
-    }
-    console.log(donationBody);
-    if (searchParams.get("id") != null && donationBody != {}) {
-      updateDonation(searchParams.get("id"), donationBody);
-    }
+    const newDonation = {
+      donor: { name: name, email: email },
+      amount: amount,
+      status: status,
+    };
+    setDonation(newDonation);
+    updateDonation(donation._id, newDonation);
   };
 
   return (
     <div>
       <h1>Update Donation</h1>
       <form onSubmit={updateDon}>
-        <Container id="container" maxWidth="sm">
+        <Container id="flex-update" maxWidth="sm">
           <TextField
+            defaultValue={donation.donor.name}
             id="outlined-basic"
-            label="Enter full name"
+            label="Enter name"
             variant="outlined"
             type="text"
             onChange={(event) => {
               setName(event.target.value);
             }}
+            required
           />
           <TextField
+            defaultValue={donation.donor.email}
             id="outlined-basic"
             label="Enter email"
             variant="outlined"
@@ -72,8 +46,10 @@ const UpdateDonation = () => {
             onChange={(event) => {
               setEmail(event.target.value);
             }}
+            required
           />
           <TextField
+            defaultValue={donation.amount}
             id="outlined-basic"
             label="Enter amount"
             variant="outlined"
@@ -81,8 +57,10 @@ const UpdateDonation = () => {
             onChange={(event) => {
               setAmount(event.target.value);
             }}
+            required
           />
           <TextField
+            defaultValue={donation.status}
             id="outlined-basic"
             label="Enter status"
             variant="outlined"
@@ -90,6 +68,7 @@ const UpdateDonation = () => {
             onChange={(event) => {
               setStatus(event.target.value);
             }}
+            required
           />
           <div id="flex-button">
             <Button type="submit" style={{ width: "30%" }} variant="contained">
