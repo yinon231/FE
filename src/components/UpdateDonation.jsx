@@ -3,9 +3,12 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { updateDonation } from "../services/service";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const UpdateDonation = () => {
+  const navigate = useNavigate();
   const [donation, setDonation] = useState(useLocation().state);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const [email, setEmail] = useState(donation.donor.email);
   const [name, setName] = useState(donation.donor.name);
   const [amount, setAmount] = useState(donation.amount);
@@ -18,14 +21,24 @@ const UpdateDonation = () => {
       status: status,
     };
     setDonation(newDonation);
-    updateDonation(donation._id, newDonation);
+    const res = await updateDonation(donation._id, newDonation);
+
+    if (Object.keys(res).length > 0) {
+      setSuccess(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+    if (Object.keys(res).length === 0) {
+      setError(true);
+    }
   };
 
   return (
     <div>
       <h1>Update Donation</h1>
       <form onSubmit={updateDon}>
-        <Container id="flex-update" maxWidth="sm">
+        <Container maxWidth="sm" className="flex-form">
           <TextField
             defaultValue={donation.donor.name}
             id="outlined-basic"
@@ -75,6 +88,16 @@ const UpdateDonation = () => {
               Submit
             </Button>
           </div>
+          {success && (
+            <div className="alert alert-success" role="alert">
+              donation updated successfully
+            </div>
+          )}
+          {error && (
+            <div className="alert alert-danger" role="alert">
+              donation updated failed
+            </div>
+          )}
         </Container>
       </form>
     </div>

@@ -20,8 +20,12 @@ table {
 #buttons {
   padding: 0 !important;
 }
-#flex-update {
-  display: flex;
+.flex-form {
+  display: flex !important;
   flex-direction: column;
   gap: 20px;
+}
+#container-flex {
+  display: flex;
+  justify-content: center !important;
 }

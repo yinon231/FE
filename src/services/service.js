@@ -7,6 +7,7 @@ const getDonations = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
+    return [];
   }
 };
 const getDonationbyId = async (id) => {
@@ -27,6 +28,7 @@ const deleteDonation = async (id) => {
     return response.data;
   } catch (error) {
     console.error(error);
+    return {};
   }
 };
 const addDonation = async (donation) => {
@@ -38,17 +40,19 @@ const addDonation = async (donation) => {
     return response.data;
   } catch (error) {
     console.error(error);
+    return {};
   }
 };
 const updateDonation = async (id, donation) => {
   try {
-    const response = await axios.put(
+    let response = await axios.put(
       `https://data-hqlc.onrender.com/api/donations/${id}`,
       donation
     );
     return response.data;
   } catch (error) {
     console.error(error);
+    return {};
   }
 };
 export {

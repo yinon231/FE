@@ -47,7 +47,7 @@ const Layout = () => {
   );
 
   return (
-    <div id="body">
+    <div>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar component="nav">
