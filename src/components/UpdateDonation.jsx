@@ -5,6 +5,7 @@ import { updateDonation } from "../services/service";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 const UpdateDonation = () => {
+  const { _id } = useLocation().state;
   const navigate = useNavigate();
   const [donation, setDonation] = useState(useLocation().state);
   const [success, setSuccess] = useState(false);
@@ -21,10 +22,11 @@ const UpdateDonation = () => {
       status: status,
     };
     setDonation(newDonation);
-    const res = await updateDonation(donation._id, newDonation);
+    const res = await updateDonation(_id, newDonation);
 
     if (Object.keys(res).length > 0) {
       setSuccess(true);
+      if (error) setError(false);
       setTimeout(() => {
         navigate("/");
       }, 2000);

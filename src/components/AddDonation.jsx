@@ -26,10 +26,13 @@ const AddDonation = () => {
     const donation = await addDonation(donationBody);
     if (Object.keys(donation).length > 0) {
       setSuccess(true);
+      if (error) setError(false);
       setTimeout(() => {
         navigate("/");
       }, 2000);
-    } else setError(true);
+    } else {
+      setError(true);
+    }
   };
   return (
     <div>
