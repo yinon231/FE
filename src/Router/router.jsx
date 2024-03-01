@@ -4,7 +4,7 @@ import Home from "../components/Home";
 import AddDonation from "../components/AddDonation";
 import UpdateDonation from "../components/UpdateDonation";
 import Donation from "../components/Donation";
-
+import NotFound from "../components/NotFound";
 const AppRouter = () => {
   return (
     <Router>
@@ -15,6 +15,7 @@ const AppRouter = () => {
           <Route path="/UpdateDonation/:id" element={<UpdateDonation />} />
           <Route path="/Donation" element={<Donation />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
