@@ -28,8 +28,7 @@ const UpdateDonation = () => {
       setTimeout(() => {
         navigate("/");
       }, 2000);
-    }
-    if (Object.keys(res).length === 0) {
+    } else {
       setError(true);
     }
   };
